@@ -14,8 +14,8 @@ class TAArray
     bool add(TextArea* textarea);
     bool add(TextArea* textarea, int index);
     
-    TextArea* get(string name);
-    TextArea* get(int index);
+    TextArea* get(string name) const;
+    TextArea* get(int index) const;
 
     TextArea* remove(string name);
     TextArea* remove(int index);

@@ -35,16 +35,16 @@ bool TAArray::add(TextArea* textarea, int index){
     return true;
 }
 
-TextArea* TAArray::get(string id){
+TextArea* TAArray::get(string id) const{
     for (int i = 0; i < size; ++i){
-        if (elements[i]->equals(id)){
+        if (elements[i]->getid() == id){
             return elements[i];
         }
     }
     return NULL;
 }
 
-TextArea* TAArray::get(int index){
+TextArea* TAArray::get(int index) const{
     if (index < 0 || index >= size) return NULL;
     return elements[index];
 }
@@ -53,7 +53,7 @@ TextArea* TAArray::remove(string number){
     
     int index = 0;
     //we want to find the index of the element to remove
-    while (!elements[index]->equals(number) && index < size){
+    while (elements[index]->getid() != number && index < size){
         ++index;
     }
 
