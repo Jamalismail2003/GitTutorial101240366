@@ -16,6 +16,8 @@ class TextArea {
     void setBorder(RGB border);
     bool overlaps(const TextArea& ta) const;
 
+    string getid() {return id;}
+
     private:
     Rectangle dimensions;
     string text;

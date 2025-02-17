@@ -4,6 +4,12 @@
 
 #define CuColour unsigned long
 
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include "RGB.h"
+
+using namespace std;
 
 struct Rectangle{
     int x;
