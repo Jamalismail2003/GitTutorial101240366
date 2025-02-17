@@ -16,7 +16,7 @@ TAArray::~TAArray(){
 }
 
 bool TAArray::add(TextArea* textarea){
-    if (size >= MAX_ARR)return false;
+    if (size >= MAX_ARR) return false;
     elements[size] = textarea;
     ++size;
     return true;
@@ -44,19 +44,18 @@ TextArea* TAArray::get(string id) const{
             return elements[i];
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 TextArea* TAArray::get(int index) const{
-    if (index < 0 || index >= size) return NULL;
+    if (index < 0 || index >= size) return nullptr;
     return elements[index];
 }
 
-TextArea* TAArray::remove(string number){
-    
+TextArea* TAArray::remove(string id){
     int index = 0;
-    //we want to find the index of the element to remove
-    while (elements[index]->getText() != number && index < size){
+    // We want to find the index of the element to remove
+    while (index < size && elements[index]->getid() != id){
         ++index;
     }
 
@@ -66,29 +65,30 @@ TextArea* TAArray::remove(string number){
 }
 
 TextArea* TAArray::remove(int index){
+    // Did we fall off the end of the TAArray?
+    if (index < 0 || index >= size) return nullptr;
 
-    //did we fall off the end of the TAArray?
-    if (index<0 || index >=size) return nullptr;
-
-    //we have found what we wanted to remove,
-    //assign the output value
+    // We have found what we wanted to remove,
+    // assign the output value
     TextArea *stu = elements[index];
 
-    //copy everything after index left one position
-    while (index < size - 1){
-        elements[index] = elements[index + 1];
-        ++index;
+    // Copy everything after index left one position
+    for (int i = index; i < size - 1; ++i){
+        elements[i] = elements[i + 1];
     }
+
+    // Set the last element to nullptr (to avoid dangling references)
+    elements[size - 1] = nullptr;
     --size;
+
     return stu;
 }
 
-
 void TAArray::print()
 {
-  cout << endl << endl << "Students:" << endl;
-  for (int i=0; i<size; ++i)
-    elements[i]->print();
+    cout << endl << endl << "Students:" << endl;
+    for (int i = 0; i < size; ++i)
+        elements[i]->print();
 
-  cout << endl;
+    cout << endl;
 }
