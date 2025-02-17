@@ -17,6 +17,7 @@ class TextArea {
     bool overlaps(const TextArea& ta) const;
 
     string getid() {return id;}
+    string getText() {return text;}
 
     private:
     Rectangle dimensions;

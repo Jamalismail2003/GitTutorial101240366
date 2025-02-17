@@ -9,6 +9,9 @@ TAArray::TAArray(){
 }
 
 TAArray::~TAArray(){
+    for (int i = 0; i < size; ++i) {
+        delete elements[i];  
+    }
     delete [] elements;
 }
 
@@ -27,7 +30,7 @@ bool TAArray::add(TextArea* textarea, int index){
     }
 
     for (int i = size; i > index; i--) {
-        elements[i] == elements[i - 1];
+        elements[i] = elements[i - 1];
     }
 
     elements[index] = textarea;
@@ -53,12 +56,13 @@ TextArea* TAArray::remove(string number){
     
     int index = 0;
     //we want to find the index of the element to remove
-    while (elements[index]->getid() != number && index < size){
+    while (elements[index]->getText() != number && index < size){
         ++index;
     }
 
-    return remove(index);
+    if (index == size) return nullptr;  // If the element wasn't found
 
+    return remove(index);
 }
 
 TextArea* TAArray::remove(int index){
@@ -77,7 +81,6 @@ TextArea* TAArray::remove(int index){
     }
     --size;
     return stu;
-
 }
 
 
